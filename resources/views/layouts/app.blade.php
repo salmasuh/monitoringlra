@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>@yield('title', 'Dashboard') - DSS Jalan</title>
+    <title>@yield('title', 'Dashboard') -  BPKAD</title>
     
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -39,10 +39,10 @@
         <span>Dashboard</span>
       </a>
 
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 
-        @if(request()->routeIs('hasil.*'))
+      <a href="{{ route('skpd.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900 
+        @if(request()->routeIs('skpd.*'))
           bg-blue-900
-        @endif ">
+        @endif">
          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
             <path d="M0 0h24v24H0z" fill="none" />
             <g fill="none" stroke="currentColor" stroke-width="2">
@@ -104,8 +104,8 @@
   <main class="flex-1 p-6">
     <header class="flex items-center justify-between mb-6">
       <div>
-        <h1 class="text-2xl font-bold">@yield('page-title','Dashboard')</h1>
-        <p class="text-sm text-gray-500">Monitoring, Validasi, dan Konsolidasi Data SKPD</p>
+        <h1 class="text-4xl font-bold">@yield('page-title','Dashboard')</h1>
+        <p class="text-m text-gray-500">@yield('page-subtitle','Monitoring, Validasi, dan Konsolidasi Data SKPD')</p>
       </div>
       <div class="text-sm text-gray-600 hidden sm:block">
         Hai, <strong>{{ Auth::user()->name }}</strong>
