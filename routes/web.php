@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 // Login
 Route::get('/login', [AuthController::class, 'login'])
@@ -17,7 +18,7 @@ Route::middleware('auth')->group(function () {
         ->name('dashboard');
 
     Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout'); // tambahkan ini
+        ->name('logout');
 });
 
 // Redirect root

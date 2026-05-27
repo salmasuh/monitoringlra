@@ -14,7 +14,7 @@
     
     <div class="bg-white rounded-lg shadow-lg p-8">
       <div class="flex justify-center mb-4">
-         <img src="{{ asset('logo.png') }}" alt="Logo" class="w-48 h-24 object-contain">
+         <img src="{{ asset('logobpkad.png') }}" alt="Logo" class="w-12 h-12 object-contain">
       </div>
       <h2 class="text-2xl font-semibold text-center mb-2">Masuk Sistem</h2>
       <p class="text-center text-sm text-gray-500 mb-6">Dashboard Monitoring Workflow LRA Mingguan</p>
