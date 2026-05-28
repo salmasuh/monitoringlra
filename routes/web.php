@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SkpdController;
 use App\Http\Controllers\PjSkpdController;
+use App\Http\Controllers\MonitoringController;
 
 // Login
 Route::get('/login', [AuthController::class, 'login'])
@@ -57,6 +58,8 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/pjskpd/{id}', [PjSkpdController::class, 'destroy'])
         ->name('pjskpd.destroy');
+    
+    Route::resource('monitoring', MonitoringController::class)->except(['show']);
 });
 
 // Redirect root

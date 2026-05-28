@@ -11,4 +11,14 @@ class Skpd extends Model
         'singkatan',
         'deskripsi',
     ];
+
+    public function pjskpds()
+    {
+        return $this->hasMany(PjSkpd::class);
+    }
+
+    public function monitorings()
+    {
+        return $this->hasMany(Monitoring::class);
+    }
 }

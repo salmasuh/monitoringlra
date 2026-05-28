@@ -4,28 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PjSkpd extends Model
+class Monitoring extends Model
 {
     protected $fillable = [
-        'nama',
-        'nip',
         'skpd_id',
-        'no_hp',
-        'email',
+        'pj_skpd_id',
+        'status',
+        'tanggal_update',
+        'catatan',
     ];
 
     /*
     |--------------------------------------------------------------------------
-    | Relasi
+    | RELASI
     |--------------------------------------------------------------------------
     */
+
     public function skpd()
     {
         return $this->belongsTo(Skpd::class);
     }
 
-    public function monitorings()
+    public function pjskpd()
     {
-        return $this->hasMany(Monitoring::class);
+        return $this->belongsTo(PjSkpd::class, 'pj_skpd_id');
     }
 }
