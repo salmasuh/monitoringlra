@@ -43,28 +43,28 @@
             {{ session('success') }}
         </div>
     @endif
-        <table class="w-full table-fixed text-left">
+        <table class="w-full text-left border-collapse">
             <thead>
                 <tr class="text-sm border-b">
-                    <th class="text-left font-semibold py-3">Nama SKPD</th>
-                    <th class="text-left py-3">Singkatan</th>
-                    <th class="text-left py-3">Deskripsi </th>
-                    <th class="text-center py-3">Aksi</th>
+                    <th class="py-3 pr-4 font-semibold w-[25%]">Nama SKPD</th>
+                    <th class="py-3 pr-4 font-semibold w-[15%]">Singkatan</th>
+                    <th class="py-3 pr-4 font-semibold w-[40%]">Deskripsi </th>
+                    <th class="py-3 text-center font-semibold w-[20%]">Aksi</th>
                 </tr>
             </thead>
 
             <tbody>
                 @forelse($skpds as $item)
                     <tr class="border-b align-top">
-                        <td class="py-3">{{ $item->nama }}</td>
-                        <td class="py-3">{{ $item->singkatan }}</td>
-                        <td class="py-3 break-words">{{ $item->deskripsi }}</td>
+                        <td class="py-3 pr-4 break-words font-medium text-gray-900">{{ $item->nama }}</td>
+                        <td class="py-3 pr-4 break-words text-gray-700">{{ $item->singkatan }}</td>
+                        <td class="py-3 pr-4 break-words text-gray-600 leading-relaxed">{{ $item->deskripsi }}</td>
 
                         <td class="py-3">
-                            <div class="flex justify-center gap-3">
+                            <div class="flex justify-center items-center gap-2">
 
                                 <!-- Edit -->
-                                <a href="/skpd/{{ $item->id }}/edit" class="bg-gray-100 hover:bg-gray-200 px-5 py-2 rounded-xl">
+                                <a href="/skpd/{{ $item->id }}/edit" class="border border-gray-300 hover:bg-gray-100 px-3 py-2 rounded-xl text-sm font-semibold transition whitespace-nowrap">
                                     Edit
                                 </a>
 
@@ -72,7 +72,7 @@
                                 <form action="/skpd/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="return confirm('Yakin hapus data?')" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-xl">
+                                    <button onclick="return confirm('Yakin hapus data?')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition">
                                         Hapus
                                     </button>
                                 </form>
@@ -82,7 +82,7 @@
                 @empty
 
                     <tr>
-                        <td colspan="4" class="text-sm text-center py-5 text-gray-500">
+                        <td colspan="4" class="text-center py-10 text-gray-500 text-medium">
                             Data tidak ditemukan
                         </td>
                     </tr>

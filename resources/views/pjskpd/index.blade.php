@@ -29,64 +29,51 @@
     </div>
 
     <!-- Table -->
-    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+    <div class="bg-white rounded-xl border border-gray-200 p-6 mt-4 overflow-x-auto">
 
-        <!-- Title -->
-        <div class="mb-8">
-            <h2 class="font-semibold text-lg">Daftar PJ SKPD</h2>
-            <p class="text-sm text-gray-400 mt-1">Total {{ $pjskpds->count() }} SKPD</p>
+        <div class="flex justify-between items-center mb-2">
+
+            <!-- Title -->
+            <div>
+                <h2 class="font-bold text-lg">Daftar PJ SKPD</h2>
+                <p class="text-sm text-gray-400 mt-1">Total {{ $pjskpds->count() }} SKPD</p>
+            </div>
         </div>
 
-        <!-- Alert -->
-        @if(session('success'))
-            <div class="text-sm bg-green-100 text-green-700 px-5 py-4 rounded-xl mb-6">
-                {{ session('success') }}
-            </div>
-        @endif
+            <!-- Alert -->
+            @if(session('success'))
+                <div class="text-sm bg-green-100 text-green-700 px-5 py-4 rounded-xl mb-6">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-        <div class="w-full overflow-x-auto">
             <!-- Table -->
-            <table class="min-w-[1200px] table-fixed border-collapse">
+            <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="text-sm border-b text-gray-800">
-                        <th class="py-3 font-semibold w-52 text-left">Nama</th>
-                        <th class="py-3 font-semibold w-44 text-left">NIP</th>
-                        <th class="py-3 font-semibold w-64 text-left">SKPD</th>
-                        <th class="py-3 font-semibold w-40 text-left">No. HP</th>
-                        <th class="py-3 font-semibold w-64 text-left">Email</th>
-                        <th class="py-3 text-center font-semibold w-56">Aksi</th>
+                    <tr class="text-sm border-b">
+                        <th class="py-3 pr-4 font-semibold w-[22%]">Nama</th>
+                        <th class="py-3 pr-4 font-semibold w-[18%]">NIP</th>
+                        <th class="py-3 pr-4 font-semibold w-[15%]">SKPD</th>
+                        <th class="py-3 pr-4 font-semibold w-[15%]">No. HP</th>
+                        <th class="py-3 pr-4 font-semibold w-[20%]">Email</th>
+                        <th class="py-3 font-semibold text-center w-[10%]">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @forelse($pjskpds as $item)
                         <tr class="border-b align-top">
-                            <td class="py-4 pr-4">
-                                <div class="break-words">{{ $item->nama }}</div>
-                            </td>
-
+                            <td class="py-4 pr-4 break-words">{{ $item->nama }}</td>
+                            <td class="py-4 pr-4 break-words">{{ $item->nip }}</td>
+                            <td class="py-4 pr-4 break-words">{{ $item->skpd->nama }}</td>
+                            <td class="py-4 pr-4 break-words">{{ $item->no_hp }}</td>
+                            <td class="py-4 pr-4 break-all text-gray-600">{{ $item->email }}</td>
                             <td class="py-4">
-                                <div class="break-words">{{ $item->nip }}</div>
-                            </td>
-
-                            <td class="py-4">
-                                <div class="break-words text-gray-600">{{ $item->skpd->nama }}</div>
-                            </td>
-
-                            <td class="py-4">
-                                <div class="break-words">{{ $item->no_hp }}</div>
-                            </td>
-
-                            <td class="py-4">
-                                <div class="break-words">{{ $item->email }}</div>
-                            </td>
-
-                            <td class="py-4">
-                                <div class="flex justify-center items-center gap-3">
+                                <div class="flex justify-center items-center gap-2">
 
                                     <!-- Edit -->
                                     <a href="{{ route('pjskpd.edit', $item->id) }}"
-                                    class="border border-gray-300 hover:bg-gray-100 px-4 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap transition">
+                                        class="border border-gray-300 hover:bg-gray-100 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition">
                                         <span class="font-semibold">Edit</span>
                                     </a>
 
@@ -95,7 +82,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Yakin hapus data?')"
-                                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 whitespace-nowrap transition">
+                                            class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition">
                                             <span class="font-semibold">Hapus</span>
                                         </button>
                                     </form>
@@ -112,7 +99,6 @@
                     @endforelse
                 </tbody>
             </table>
-        </div>
     </div>
 </div>
 @endsection
