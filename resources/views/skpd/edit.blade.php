@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="bg-white rounded-xl border border-gray-200 p-7">
-    <h2 class="text-lg font-semibold mb-4">Edit SKPD</h2>
+    <h2 class="text-xl font-semibold mb-5">Edit SKPD</h2>
 
     <!-- Error -->
     @if($errors->any())
@@ -25,20 +25,20 @@
         @method('PUT')
 
         <!-- Nama -->
-        <div class="mb-3">
-            <label class="block mb-3 font-medium">Nama SKPD</label>
+        <div class="mb-2">
+            <label class="block mb-2 font-medium">Nama SKPD</label>
             <input type="text" name="nama" value="{{ old('nama', $skpd->nama) }}" class="w-full p-3 border rounded"required>
         </div>
 
         <!-- Singkatan -->
-        <div class="mb-3">
-            <label class="block mb-3 font-medium">Singkatan</label>
+        <div class="mb-2">
+            <label class="block mb-2 font-medium">Singkatan</label>
             <input type="text" name="singkatan" value="{{ old('singkatan', $skpd->singkatan) }}" class="w-full p-3 border rounded" required>
         </div>
 
         <!-- Deskripsi -->
         <div class="md:col-span-2">
-            <label class="block mb-3 font-medium">Deskripsi (opsional)</label>
+            <label class="block mb-2 font-medium">Deskripsi (opsional)</label>
             <textarea name="deskripsi" class="w-full p-3 border rounded">{{ old('deskripsi', $skpd->deskripsi) }}</textarea>
         </div>
 

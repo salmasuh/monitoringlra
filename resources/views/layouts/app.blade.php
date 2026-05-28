@@ -53,8 +53,8 @@
          <span>Data SKPD</span>
       </a>
 
-      <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900
-        @if(request()->routeIs('users.*'))
+      <a href="{{ route('pjskpd.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900
+        @if(request()->routeIs('pjskpd.*'))
           bg-blue-900
         @endif ">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
