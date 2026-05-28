@@ -2,10 +2,10 @@
 
 @section('title','Data SKPD')
 @section('page-title','Data SKPD')
-@section('page-subtitle','Kelola daftar SKPD')
+@section('page-subtitle','Kelola daftar Satuan Kerja Perangkat Daerah (SKPD)')
 
 @section('content')
-<div class="bg-white rounded-xl border border-gray-200 p-7">
+<div class="bg-white rounded-xl border border-gray-200 p-7 shadow-sm">
     <h2 class="text-xl font-semibold mb-5">Edit SKPD</h2>
 
     <!-- Error -->
