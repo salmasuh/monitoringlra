@@ -30,12 +30,6 @@ class AuthController extends Controller
                 ->onlyInput('username');
     }
 
-    // dashboard
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-
     // logout
     public function logout(Request $request)
     {

@@ -23,13 +23,13 @@
       <img src="{{ asset('logobpkad.png') }}" alt="Logo" class="w-8 h-8 object-contain">
       <div>
         <p class="text-sm font-semibold">BPKAD</p>
-        <p class="text-xs opacity-80">Kabupaten Bangkinang</p>
+        <p class="text-xs opacity-80">Kabupaten Kampar</p>
       </div>
     </div>
       
     <nav class="space-y-1 flex-1">
-      <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900
-        @if(request()->routeIs('dashboard'))
+      <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-900
+        @if(request()->routeIs('dashboard.*'))
           bg-blue-900
         @endif ">
         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">

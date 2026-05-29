@@ -47,11 +47,11 @@
 
       <hr class="my-6">
       <div class="text-center text-xs text-gray-500">
-        Dashboard monitoring workflow LRA mingguan untuk BPKAD Kabupaten Bangkinang akan disajikan dalam bentuk grafik dan tabel yang mudah dipahami. Data akan diperbarui setiap minggu untuk memberikan informasi terkini tentang kinerja keuangan daerah.
+        Dashboard monitoring workflow LRA mingguan untuk BPKAD Kabupaten Kampar akan disajikan dalam bentuk grafik dan tabel yang mudah dipahami. Data akan diperbarui setiap minggu untuk memberikan informasi terkini tentang kinerja keuangan daerah.
       </div>
     </div>
 
-    <p class="text-center text-xs text-gray-500 mt-4">© BPKAD Kabupaten Bangkinang 2026</p>
+    <p class="text-center text-xs text-gray-500 mt-4">© BPKAD Kabupaten Kampar 2026</p>
   </div>
 </body>
 </html>

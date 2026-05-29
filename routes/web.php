@@ -18,8 +18,8 @@ Route::post('/login', [AuthController::class, 'authenticate'])
 // Route setelah login
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [AuthController::class, 'dashboard'])
-        ->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard.index');
 
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
