@@ -86,7 +86,7 @@
 
         <div>
             <label class="block mb-2 font-medium">Tanggal Update</label>
-            <input type="text" value="{{ \Carbon\Carbon::parse($monitoring->tanggal_update)->format('d M Y H:i') }}"
+            <input type="text" value="{{ \Carbon\Carbon::parse($monitoring->tanggal_update)->format('d M Y') }}"
                 readonly class="w-full p-3 border rounded">
             <p class="text-sm text-gray-400 mt-2">
                 Tanggal akan otomatis diperbarui saat data disimpan

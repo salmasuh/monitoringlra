@@ -72,6 +72,7 @@ class MonitoringController extends Controller
             'skpd_id' => 'required',
             'pj_skpd_id' => 'required',
             'status' => 'required',
+            'tanggal_update' => 'required|date',
             'catatan' => 'nullable',
         ]);
 
@@ -79,13 +80,12 @@ class MonitoringController extends Controller
             'skpd_id' => $request->skpd_id,
             'pj_skpd_id' => $request->pj_skpd_id,
             'status' => $request->status,
-            'tanggal_update' => now(),
+            'tanggal_update' => $request->tanggal_update,
             'catatan' => $request->catatan,
         ]);
 
-        return redirect()
-            ->route('monitoring.index')
-            ->with('success', 'Data monitoring berhasil ditambahkan');
+        return redirect()->route('monitoring.index')
+                ->with('success', 'Data monitoring berhasil ditambahkan');
     }
 
     /*
@@ -132,9 +132,8 @@ class MonitoringController extends Controller
             'catatan' => $request->catatan,
         ]);
 
-        return redirect()
-            ->route('monitoring.index')
-            ->with('success', 'Data monitoring berhasil diupdate');
+        return redirect()->route('monitoring.index')
+                ->with('success', 'Data monitoring berhasil diupdate');
     }
 
     /*
@@ -147,8 +146,7 @@ class MonitoringController extends Controller
         $monitoring = Monitoring::findOrFail($id);
         $monitoring->delete();
 
-        return redirect()
-            ->route('monitoring.index')
-            ->with('success', 'Data monitoring berhasil dihapus');
+        return redirect()->route('monitoring.index')
+                ->with('success', 'Data monitoring berhasil dihapus');
     }
 }

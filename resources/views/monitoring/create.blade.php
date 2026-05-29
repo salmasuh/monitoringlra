@@ -59,6 +59,12 @@
             </select>
         </div>
 
+        <!-- Tanggal Update -->
+        <div class="mb-2">
+            <label class="block mb-2 font-medium">Tanggal Update</label>
+            <input type="date" name="tanggal_update" value="{{ old('tanggal_update', date('Y-m-d')) }}" 
+                class="w-full p-3 border rounded" required>
+
         <!-- Catatan -->
         <div class="md:col-span-2">
             <label class="block mb-2 font-medium">Catatan</label>
