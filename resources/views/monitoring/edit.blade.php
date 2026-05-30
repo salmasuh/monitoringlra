@@ -26,30 +26,18 @@
          <!-- SKPD -->
         <div class="mb-2">
             <label class="block mb-2 font-medium">SKPD</label>
-            <select name="skpd_id" onchange="window.location='?skpd_id='+this.value"
-                class="w-full p-3 border rounded" required>
-                <option value="">-- Pilih SKPD --</option>
-                @foreach($skpds as $skpd)
-                    <option value="{{ $skpd->id }}"
-                            {{ old('skpd_id', $monitoring->skpd_id) == $skpd->id ? 'selected' : '' }}
-                        >{{ $skpd->nama }}
-                    </option>
-                @endforeach
-            </select>
+            <input type="text" value="{{ $monitoring->skpd->nama }}"
+                class="w-full p-3 border rounded bg-gray-100" readonly>
+            <input type="hidden" name="skpd_id" value="{{ $monitoring->skpd_id }}">
         </div>
 
         <!-- PJ -->
         <div class="mb-2">
             <label class="block mb-2 font-medium">PJ SKPD</label>
-            <select name="pj_skpd_id" class="w-full p-3 border rounded" required>
-                <option value="">-- Pilih PJ --</option>
-                @foreach($pjskpds as $pj)
-                    <option value="{{ $pj->id }}"
-                            {{ old('pj_skpd_id', $monitoring->pj_skpd_id) == $pj->id ? 'selected' : '' }}
-                        >{{ $pj->nama }}
-                    </option>
-                @endforeach
-            </select>
+            <input type="text" value="{{ $monitoring->pjskpd->nama }}"
+                class="w-full p-3 border rounded bg-gray-100" readonly>
+            <input type="hidden" name="pj_skpd_id"
+                value="{{ $monitoring->pj_skpd_id }}">
         </div>
 
         <!-- Status -->

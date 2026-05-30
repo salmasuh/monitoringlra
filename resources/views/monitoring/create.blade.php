@@ -22,30 +22,31 @@
     <form action="{{ route('monitoring.store') }}" method="POST" class="grid md:grid-cols-2 gap-4">
         @csrf
 
-         <!-- SKPD -->
+        <!-- SKPD -->
         <div class="mb-2">
             <label class="block mb-2 font-medium">SKPD</label>
-            <select name="skpd_id" onchange="window.location='?skpd_id='+this.value"
-                class="w-full p-3 border rounded" required>
+            <select name="skpd_id"
+                    id="skpd_id"
+                    class="w-full p-3 border rounded"
+                    required>
+
                 <option value="">-- Pilih SKPD --</option>
+
                 @foreach($skpds as $skpd)
-                    <option value="{{ $skpd->id }}"
-                        @selected($selectedSkpd == $skpd->id)>
+                    <option value="{{ $skpd->id }}">
                         {{ $skpd->nama }}
                     </option>
                 @endforeach
+
             </select>
         </div>
 
-        <!-- PJ -->
+        <!-- PJ SKPD -->
         <div class="mb-2">
             <label class="block mb-2 font-medium">PJ SKPD</label>
-            <select name="pj_skpd_id" class="w-full p-3 border rounded" required>
-                <option value="">-- Pilih PJ --</option>
-                @foreach($pjskpds as $pj)
-                    <option value="{{ $pj->id }}">{{ $pj->nama }}</option>
-                @endforeach
-            </select>
+            <input type="text" id="pj_nama"
+                class="w-full p-3 border rounded bg-gray-100" readonly>
+            <input type="hidden" name="pj_skpd_id" id="pj_skpd_id">
         </div>
 
         <!-- Status -->
@@ -64,6 +65,7 @@
             <label class="block mb-2 font-medium">Tanggal Update</label>
             <input type="date" name="tanggal_update" value="{{ old('tanggal_update', date('Y-m-d')) }}" 
                 class="w-full p-3 border rounded" required>
+        </div>
 
         <!-- Catatan -->
         <div class="md:col-span-2">
@@ -82,4 +84,35 @@
 
     </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const skpd = document.getElementById('skpd_id');
+    const pjNama = document.getElementById('pj_nama');
+    const pjId = document.getElementById('pj_skpd_id');
+
+    skpd.addEventListener('change', function () {
+
+        let skpdId = this.value;
+
+        pjNama.value = '';
+        pjId.value = '';
+
+        if (!skpdId) return;
+
+        fetch('/get-pj-skpd/' + skpdId)
+            .then(res => res.json())
+            .then(data => {
+
+                if(data){
+                    pjNama.value = data.nama;
+                    pjId.value = data.id;
+                }
+
+            });
+    });
+
+});
+</script>
 @endsection

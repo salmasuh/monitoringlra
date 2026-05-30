@@ -60,6 +60,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/pjskpd/{id}', [PjSkpdController::class, 'destroy'])
         ->name('pjskpd.destroy');
     
+    Route::get('/get-pj-skpd/{skpd}', function ($skpd) {
+        return \App\Models\PjSkpd::where('skpd_id', $skpd)
+                ->first();
+    });
+    
     Route::resource('monitoring', MonitoringController::class)->except(['show']);
 
     Route::resource('pengguna', UserController::class)->except(['show']);

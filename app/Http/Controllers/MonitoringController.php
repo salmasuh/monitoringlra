@@ -42,23 +42,11 @@ class MonitoringController extends Controller
     | CREATE
     |--------------------------------------------------------------------------
     */
-    public function create(Request $request)
+    public function create()
     {
         $skpds = Skpd::orderBy('nama')->get();
-        $selectedSkpd = $request->skpd_id;
-        $pjskpds = [];
 
-        if ($selectedSkpd) {
-            $pjskpds = PjSkpd::where('skpd_id', $selectedSkpd)
-                ->orderBy('nama')
-                ->get();
-        }
-
-        return view('monitoring.create', compact(
-            'skpds',
-            'pjskpds',
-            'selectedSkpd'
-        ));
+        return view('monitoring.create', compact('skpds'));
     }
 
     /*
@@ -95,17 +83,12 @@ class MonitoringController extends Controller
     */
     public function edit($id)
     {
-        $monitoring = Monitoring::findOrFail($id);
-        $skpds = Skpd::orderBy('nama')->get();
-        $pjskpds = PjSkpd::where('skpd_id', $monitoring->skpd_id)
-            ->orderBy('nama')
-            ->get();
+        $monitoring = Monitoring::with([
+            'skpd',
+            'pjskpd'
+        ])->findOrFail($id);
 
-        return view('monitoring.edit', compact(
-            'monitoring',
-            'skpds',
-            'pjskpds'
-        ));
+        return view('monitoring.edit', compact('monitoring'));
     }
 
     /*
