@@ -12,7 +12,6 @@ class SkpdController extends Controller
     | INDEX
     |--------------------------------------------------------------------------
     */
-
     public function index(Request $request)
     {
         $q = $request->q;
@@ -32,7 +31,6 @@ class SkpdController extends Controller
     | CREATE
     |--------------------------------------------------------------------------
     */
-
     public function create()
     {
         return view('skpd.create');
@@ -43,7 +41,6 @@ class SkpdController extends Controller
     | STORE
     |--------------------------------------------------------------------------
     */
-
     public function store(Request $request)
     {
         $request->validate([
@@ -52,14 +49,22 @@ class SkpdController extends Controller
             'deskripsi' => 'nullable',
         ]);
 
+        // cek apakah nama sudah ada
+        $cek = Skpd::where('nama', $request->nama)->exists();
+
+        if ($cek) {
+            return redirect()->route('skpd.index')
+                    ->with('error', 'Nama SKPD sudah pernah diinput.');
+        }
+
         Skpd::create([
             'nama' => $request->nama,
             'singkatan' => $request->singkatan,
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect('/skpd')
-            ->with('success', 'Data SKPD berhasil ditambahkan');
+        return redirect()->route('skpd.index')
+                ->with('success', 'Data SKPD berhasil ditambahkan.');
     }
 
     /*
@@ -67,7 +72,6 @@ class SkpdController extends Controller
     | EDIT
     |--------------------------------------------------------------------------
     */
-
     public function edit($id)
     {
         $skpd = Skpd::findOrFail($id);
@@ -80,7 +84,6 @@ class SkpdController extends Controller
     | UPDATE
     |--------------------------------------------------------------------------
     */
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -88,6 +91,16 @@ class SkpdController extends Controller
             'singkatan' => 'required',
             'deskripsi' => 'nullable',
         ]);
+
+        $cek = Skpd::where('nama', $request->nama)
+                    ->where('id', '!=', $id)
+                    ->exists();
+
+        if ($cek) {
+            return redirect()
+                ->route('skpd.index')
+                ->with('error', 'Nama SKPD sudah digunakan oleh data lain.');
+        }
 
         $skpd = Skpd::findOrFail($id);
 
@@ -97,8 +110,8 @@ class SkpdController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect('/skpd')
-            ->with('success', 'Data SKPD berhasil diupdate');
+        return redirect()->route('skpd.index')
+                ->with('success', 'Data SKPD berhasil diupdate.');
     }
 
     /*
@@ -106,7 +119,6 @@ class SkpdController extends Controller
     | DELETE
     |--------------------------------------------------------------------------
     */
-
     public function destroy($id)
     {
         $skpd = Skpd::findOrFail($id);

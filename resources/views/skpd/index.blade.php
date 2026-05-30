@@ -37,17 +37,26 @@
                 <p class="text-sm text-gray-400 mt-1">Total {{ $skpds->count() }} SKPD</p>
             </div>
         </div>
+
         <!-- Alert -->
-    @if(session('success'))
-        <div class="text-sm bg-green-100 text-green-700 px-5 py-4 mt-6 rounded-xl">
-            {{ session('success') }}
-        </div>
-    @endif
+        @if(session('success'))
+            <div class="text-sm bg-green-100 text-green-700 px-5 py-4 mt-6 rounded-xl">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Alert Error -->
+        @if(session('error'))
+            <div class="text-sm bg-red-100 text-red-700 px-5 py-4 mt-6 rounded-xl">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <table class="w-full text-left border-collapse">
             <thead>
                 <tr class="text-sm border-b">
                     <th class="py-3 pr-4 font-semibold w-[25%]">Nama SKPD</th>
-                    <th class="py-3 pr-4 font-semibold w-[15%]">Singkatan</th>
+                    <th class="py-3 pr-4 font-semibold w-[15%]">Singkatan/Tingkat</th>
                     <th class="py-3 pr-4 font-semibold w-[40%]">Deskripsi </th>
                     <th class="py-3 text-center font-semibold w-[20%]">Aksi</th>
                 </tr>
@@ -56,7 +65,7 @@
             <tbody>
                 @forelse($skpds as $item)
                     <tr class="border-b align-top">
-                        <td class="py-3 pr-4 break-words font-medium text-gray-900">{{ $item->nama }}</td>
+                        <td class="py-3 pr-4 break-words font-medium text-gray-900 w-1/2">{{ $item->nama }}</td>
                         <td class="py-3 pr-4 break-words text-gray-700">{{ $item->singkatan }}</td>
                         <td class="py-3 pr-4 break-words text-gray-600 leading-relaxed">{{ $item->deskripsi }}</td>
 

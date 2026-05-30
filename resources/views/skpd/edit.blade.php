@@ -32,7 +32,7 @@
 
         <!-- Singkatan -->
         <div class="mb-2">
-            <label class="block mb-2 font-medium">Singkatan</label>
+            <label class="block mb-2 font-medium">Singkatan/Tingkat</label>
             <input type="text" name="singkatan" value="{{ old('singkatan', $skpd->singkatan) }}" class="w-full p-3 border rounded" required>
         </div>
 
