@@ -38,12 +38,16 @@
         <!-- SKPD -->
         <div class="mb-2">
             <label class="block mb-2 font-medium">SKPD</label>
-            <select name="skpd_id" class="w-full p-3 border rounded" required>
-                <option value="">-- Pilih SKPD --</option>
+            <input list="skpd-list" id="skpd_search" class="w-full p-3 border rounded"
+                placeholder="Cari SKPD..." autocomplete="off">
+            <datalist id="skpd-list">
                 @foreach($skpds as $skpd)
-                    <option value="{{ $skpd->id }}">{{ $skpd->nama }}</option>
+                    <option data-id="{{ $skpd->id }}"
+                        value="{{ $skpd->nama }}">
+                    </option>
                 @endforeach
-            </select>
+            </datalist>
+            <input type="hidden" name="skpd_id" id="skpd_id" required>
         </div>
 
         <!-- HP -->
@@ -72,4 +76,21 @@
 
     </form>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const search = document.getElementById('skpd_search');
+    const hidden = document.getElementById('skpd_id');
+
+    search.addEventListener('change', function() {
+        const options = document.querySelectorAll('#skpd-list option');
+        hidden.value = '';
+
+        options.forEach(option => {
+            if (option.value === search.value) {
+                hidden.value = option.dataset.id;
+            }
+        });
+    });
+});
+</script>
 @endsection

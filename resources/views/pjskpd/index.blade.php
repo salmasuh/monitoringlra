@@ -47,6 +47,12 @@
                 </div>
             @endif
 
+            @if(session('error'))
+                <div class="text-sm bg-red-100 text-red-700 px-5 py-4 rounded-xl mb-6">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <!-- Table -->
             <table class="w-full text-left border-collapse">
                 <thead>

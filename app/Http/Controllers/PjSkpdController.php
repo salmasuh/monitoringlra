@@ -13,7 +13,6 @@ class PjSkpdController extends Controller
     | INDEX
     |--------------------------------------------------------------------------
     */
-
     public function index(Request $request)
     {
         $q = $request->q;
@@ -34,10 +33,13 @@ class PjSkpdController extends Controller
     | CREATE
     |--------------------------------------------------------------------------
     */
-
     public function create()
     {
-        $skpds = Skpd::orderBy('nama')->get();
+        $skpds = Skpd::whereNotIn(
+            'id',
+            PjSkpd::pluck('skpd_id')
+        )
+        ->orderBy('nama')->get();
 
         return view('pjskpd.create', compact('skpds'));
     }
@@ -47,7 +49,6 @@ class PjSkpdController extends Controller
     | STORE
     |--------------------------------------------------------------------------
     */
-
     public function store(Request $request)
     {
         $request->validate([
@@ -58,6 +59,15 @@ class PjSkpdController extends Controller
             'email' => 'nullable|email',
         ]);
 
+        $sudahAda = PjSkpd::where('skpd_id', $request->skpd_id)
+            ->exists();
+
+        if ($sudahAda) {
+            return redirect()
+                ->route('pjskpd.index')
+                ->with('error', 'SKPD tersebut sudah memiliki PJ SKPD.');
+        }
+
         PjSkpd::create([
             'nama' => $request->nama,
             'nip' => $request->nip,
@@ -66,9 +76,8 @@ class PjSkpdController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()
-            ->route('pjskpd.index')
-            ->with('success', 'Data PJ SKPD berhasil ditambahkan');
+        return redirect()->route('pjskpd.index')
+                ->with('success', 'Data PJ SKPD berhasil ditambahkan');
     }
 
     /*
@@ -76,7 +85,6 @@ class PjSkpdController extends Controller
     | EDIT
     |--------------------------------------------------------------------------
     */
-
     public function edit($id)
     {
         $pjskpd = PjSkpd::findOrFail($id);
@@ -90,7 +98,6 @@ class PjSkpdController extends Controller
     | UPDATE
     |--------------------------------------------------------------------------
     */
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -111,9 +118,8 @@ class PjSkpdController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()
-            ->route('pjskpd.index')
-            ->with('success', 'Data PJ SKPD berhasil diupdate');
+        return redirect()->route('pjskpd.index')
+                ->with('success', 'Data PJ SKPD berhasil diupdate');
     }
 
     /*
@@ -121,15 +127,12 @@ class PjSkpdController extends Controller
     | DELETE
     |--------------------------------------------------------------------------
     */
-
     public function destroy($id)
     {
         $pjskpd = PjSkpd::findOrFail($id);
-
         $pjskpd->delete();
 
-        return redirect()
-            ->route('pjskpd.index')
-            ->with('success', 'Data PJ SKPD berhasil dihapus');
+        return redirect()->route('pjskpd.index')
+                ->with('success', 'Data PJ SKPD berhasil dihapus');
     }
 }
